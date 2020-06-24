@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+	.card-header{font-size: 1.5rem;}
+	body{font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;}
+</style>
+    <title>龍華科大訪客資訊單</title>
+  </head>
+  <body onload="myFunction()">
+<div class="row">
+	<div class="container">
+		<div class="col-md-12">
+			<div class="card mt-4">
+  <div class="card-header bg-info text-white">
+    龍華科大訪客資訊單
+  </div>
+  <div id="info">
+   
+  </div>
+</div>
+		</div>
+	</div>
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    	function myFunction() {
+    		var url = location.href;
+
+//再來用去尋找網址列中是否有資料傳遞(QueryString)
+if(url.indexOf('?')!=-1)
+{
+    var Name ="";
+    var Identity = "";
+    var Invitation ="";
+    var Contact = "";
+    var CPhone = "";
+    var ComeDate = "";
+    var content = "";
+
+    //在此直接將各自的參數資料切割放進ary中
+    var ary = url.split('?')[1].split('&');
+    //此時ary的內容為：
+    //ary[0] = 'id=U001'，ary[1] = 'name=GQSM'
+    
+    //下迴圈去搜尋每個資料參數
+    for(i=0;i<=ary.length-1;i++)
+    {
+        //如果資料名稱為id的話那就把他取出來
+        if(ary[i].split('=')[0] == 'Name'){
+            Name = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>訪客姓名："+decodeURI(Name)+"</h5></div>";
+        }
+        else if(ary[i].split('=')[0] == 'Identity'){
+            Identity = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>身分識別："+decodeURI(Identity)+"</h5></div>";
+        }
+        else if(ary[i].split('=')[0] == 'Invitation'){
+            Invitation = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>邀請單位："+decodeURI(Invitation)+"</h5></div>";
+        }
+        else if(ary[i].split('=')[0] == 'Contact'){
+            Contact = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>單位連絡人："+decodeURI(Contact)+"</h5></div>";
+        }
+        else if(ary[i].split('=')[0] == 'CPhone'){
+            CPhone = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>單位連絡人電話："+decodeURI(CPhone)+"</h5></div>";
+        }
+        else if(ary[i].split('=')[0] == 'ComeDate'){
+            ComeDate = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>到訪日期："+decodeURI(ComeDate)+"</h5></div>";
+        }
+    }
+    info.innerHTML = content;
+}
+}
+    	
+    </script>
+  </body>
+</html>
