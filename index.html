@@ -61,6 +61,10 @@ if(url.indexOf('?')!=-1)
             Name = ary[i].split('=')[1];
             content += "<div class='card card-body mt-1'><h5 class='card-title'>訪客姓名："+decodeURI(Name)+"</h5></div>";
         }
+        else if(ary[i].split('=')[0] == 'Tel'){
+            Tel = ary[i].split('=')[1];
+            content += "<div class='card card-body mt-1'><h5 class='card-title'>聯絡電話："+decodeURI(Tel)+"</h5></div>";
+        }
         else if(ary[i].split('=')[0] == 'Identity'){
             Identity = ary[i].split('=')[1];
             content += "<div class='card card-body mt-1'><h5 class='card-title'>身分識別："+decodeURI(Identity)+"</h5></div>";
